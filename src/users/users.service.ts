@@ -31,6 +31,7 @@ export class UsersService {
   }
 
   async checkUser(_id: string) {
+    console.log("checkUser", _id);
     const user = await this.userModel.findById(_id);
 
     const token = this.jwtService.sign({ _id: user._id });
@@ -60,6 +61,15 @@ export class UsersService {
   }
 
   async addToFavorites(dto: AddToFavDto) {
+    console.log("addToFavorites", dto);
+    // const token = this.jwtService.sign({ _id: dto._id });
+
+    // if (!token) {
+    //   throw new UnauthorizedException({
+    //     message: ["The token is expired, or there is no user with this token"],
+    //   });
+    // }
+
     const user = await this.userModel.findById(dto._id);
 
     const existCurrency = user.favorites.find(

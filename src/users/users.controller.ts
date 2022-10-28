@@ -34,7 +34,7 @@ export class UsersController {
   @ApiOperation({ summary: "Проверка пользователя" })
   @ApiResponse({ status: 200, type: User })
   @UseGuards(JwtAuthGuard)
-  @Post("/:id")
+  @Post("/check/:id")
   check(@Param("id") id) {
     return this.usersService.checkUser(id);
   }
@@ -48,14 +48,16 @@ export class UsersController {
 
   @ApiOperation({ summary: "Добавить в избранное" })
   @ApiResponse({ status: 200, type: User })
+  @UseGuards(JwtAuthGuard)
   @UsePipes(ValidationPipe)
   @Post("/addToFavorites")
   addFavorites(@Body() favDto: AddToFavDto) {
-    return this.usersService.addToFavorites(favDto);
+    this.usersService.addToFavorites(favDto);
   }
 
   @ApiOperation({ summary: "Удалить из избранного" })
   @ApiResponse({ status: 200, type: User })
+  @UseGuards(JwtAuthGuard)
   @UsePipes(ValidationPipe)
   @Delete("/deleteFromFavorites")
   deleteFavorites(@Body() favDto: DeleteFromFavDto) {
