@@ -1,6 +1,6 @@
 {
   "version": 2,
   "name": "beincryptobackend",
-  "builds": [{ "src": "src/main.ts", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "src/main.js" }]
+  "builds": [{ "src": "main.ts", "use": "@vercel/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "main.js" }]
 }
